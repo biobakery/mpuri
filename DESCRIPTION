@@ -1,0 +1,15 @@
+Package: mpuri
+Type: Package
+Title: Utilities To Plot Microbiome Data
+Version: 0.1
+Date: 2015-06-19
+Authors@R: person("Andy", "Shi", email = "andy.as.shi@gmail.com",
+    role = c("aut", "cre"))
+Description: Utilities to plot microbiome data.
+License: MIT
+LazyData: TRUE
+Imports:
+    ggplot2,
+    plyr,
+    reshape2,
+    stringr
