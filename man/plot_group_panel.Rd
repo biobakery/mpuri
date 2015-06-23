@@ -5,8 +5,8 @@
 \title{Plot boxplots of log10 relative abundance, facetted by 1 feature}
 \usage{
 plot_group_panel(metadata, otu_tab_matrix, group, base_group = "Control",
-  cutoff = min(20, nrow(otu_tab_matrix)), alpha = 0.05, notch = F,
-  title = "", labeller = "label_value")
+  cutoff = min(20, nrow(otu_tab_matrix)), alpha = 0.05, notch = FALSE,
+  sep = ";", title = "", labeller = "label_value")
 }
 \arguments{
 \item{metadata}{Data frame of metadata, like the one returned by readPCL.}
@@ -26,6 +26,9 @@ relative abundance.}
 \item{alpha}{alpha level to conduct each hypothesis test.}
 
 \item{notch}{Whether to have notched boxplots.}
+
+\item{sep}{Character(s) separating different levels of taxonomic
+classification in the OTU labels (rows of \code{otu_tab_matrix})}
 
 \item{title}{Title for the graph.}
 

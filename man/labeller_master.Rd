@@ -2,7 +2,7 @@
 % Please edit documentation in R/labeller_master.R
 \name{labeller_master}
 \alias{labeller_master}
-\title{Re-label facets when using ggplot2's \code{\link[ggplot2]{facet_grid}}}
+\title{Re-label facets when using ggplot2's \code{\link[ggplot2]{facet_grid}}.}
 \usage{
 labeller_master(label_list)
 }
@@ -11,7 +11,7 @@ labeller_master(label_list)
 }
 \value{
 A ggplot2 labeller function that can be passed as the \code{labeller}
-argument for \code{\link[ggplot2]{facet_grid}}
+argument for \code{\link[ggplot2]{facet_grid}}.
 }
 \description{
 \code{labeller_master} returns a function that can be used to re-label factes

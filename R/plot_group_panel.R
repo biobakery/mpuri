@@ -40,17 +40,20 @@
 #' relative abundance.
 #' @param alpha alpha level to conduct each hypothesis test. 
 #' @param notch Whether to have notched boxplots.
+#' @param sep Character(s) separating different levels of taxonomic
+#' classification in the OTU labels (rows of \code{otu_tab_matrix})
 #' @param title Title for the graph.
 #' @param labeller labeller function to pass to ggplot2's
 #' \code{\link[ggplot2]{facet_grid}}. The default uses the values of the labels. 
 #' @return ggplot2 plotting object. This function does not automatically display
 #' the plot, so you need to call \code{\link{print}} on its output to display
 #' the plot. 
+#' @export
 plot_group_panel <- function(metadata, otu_tab_matrix, group, 
                              base_group="Control",
                              cutoff=min(20, nrow(otu_tab_matrix)), 
-                             alpha=0.05,
-                             notch=F, title="", labeller="label_value") {
+                             alpha=0.05, notch=FALSE, sep=";", title="", 
+                             labeller="label_value") {
     
     # get medians of control
     otu_tab.wide <- data.frame(t(otu_tab_matrix))
@@ -64,10 +67,11 @@ plot_group_panel <- function(metadata, otu_tab_matrix, group,
     orders <- order(meds$med)
     l <- length(orders)
     ord <- otu_tab_matrix[orders[(l-cutoff+1):l],]
-    otu_tab.wide2 <- data.frame(t(ord))
+    otu_tab.wide2 <- data.frame(t(ord), check.names=FALSE)
     
     # clean up names of bugs
-    newnames <- sapply(colnames(otu_tab.wide2), process_bug_names) 
+    newnames <- sapply(colnames(otu_tab.wide2), 
+                       function(x) { process_bug_name(x, sep=sep) })
     colnames(otu_tab.wide2) <- newnames
     # add grouping metadata
     otu_tab.wide2[[group]] <- metadata[[group]]
@@ -92,14 +96,31 @@ plot_group_panel <- function(metadata, otu_tab_matrix, group,
                               reorder(bug, med, function(x) { x }, order=T))
     meds_plot$type <- paste("Connecting medians of\ntaxa from", base_group)
 
+
+    # change colors here for coloring no change/increase/decrease
+    change_cols <- c("#0072B2", "#000000", "#D55E00")
+    #change_cols <- c("#2C7BB6", "#FFFFBF", "#D7191C")
+    names(change_cols) <- c("decreased", "no change", "increased")
+    color_scale <- ggplot2::scale_colour_manual(name="change_cols",
+                                                values=change_cols)
+
+    # plotting code
+
+    # update boxplot points so they can be the same color as the boxplot
     ggplot2::update_geom_defaults("point", list(colour=NULL))
+
+    # draw some invisible points for the medians
     p1 <- ggplot2::ggplot(data=meds_plot, ggplot2::aes(x=bug_ord, y=med)) +
-            ggplot2::geom_point()
+            ggplot2::geom_point(alpha=0)
+
+    # draw the boxplots
     p1 <- p1 + ggplot2::geom_boxplot(data=d, ggplot2::aes(x=bug, y=value,
                                                           color=changed),
                                      notch=notch) + color_scale + 
         ggplot2::facet_grid(as.formula(paste("~", group)), labeller=labeller)
+
     # To change dots and line colors here:
+    # draw the medians as points and connect them 
     p1 <- p1 + ggplot2::geom_point(ggplot2::aes(shape=type), color="#999999") +
             ggplot2::geom_line(ggplot2::aes(group=1, linetype=type),
                             color="#999999")

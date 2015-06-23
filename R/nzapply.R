@@ -16,11 +16,8 @@
 #'   \code{x}
 #'
 #' @examples
-#'
-#' nzapply(c(0, 1, 2, 3, 4), min)
-#' nzapply(c(0, 0, 0, 0), max, base = NA)
-#'
-#'
+#' mpuri:::nzapply(c(0, 1, 2, 3, 4), min)
+#' mpuri:::nzapply(c(0, 0, 0, 0), max, base = NA)
 nzapply <- function(x, FUN, base=0, ...) {
     # apply a function func to the nonzero values of x
     # x: a vector

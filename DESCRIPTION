@@ -7,12 +7,13 @@ Authors@R: person("Andy", "Shi", email = "andy.as.shi@gmail.com",
     role = c("aut", "cre"))
 Description: Utilities to plot microbiome data. 
 Depends: R (>= 2.10)
-Imports:
+Imports: 
     ggplot2,
     plyr,
     reshape2,
     stringr
-Suggests:
-    devtools
-License: MIT
+Suggests: 
+    devtools,
+    testthat
+License: MIT + file LICENSE
 LazyData: TRUE

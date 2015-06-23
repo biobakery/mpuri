@@ -29,7 +29,7 @@ Source:
 \url{http://stackoverflow.com/questions/12583569/how-can-i-calculate-the-means-of-rows-while-excluding-the-zero-values-from-rows}
 }
 \examples{
-nzapply(c(0, 1, 2, 3, 4), min)
-nzapply(c(0, 0, 0, 0), max, base = NA)
+mpuri:::nzapply(c(0, 1, 2, 3, 4), min)
+mpuri:::nzapply(c(0, 0, 0, 0), max, base = NA)
 }
 
