@@ -9,16 +9,21 @@ Download the source code, either by using the links on the [downloads page](http
  hg clone ssh://hg@bitbucket.org/biobakery/mpuri
 ```
 
-In R, run the following command:
+In R, run the following command to install dependencies:
+```
+#!r
+install.packages(c("ggplot2", "stringr", "reshape2", "plyr"))
+```
+
+Then, run the following to install mpuri: 
 
 ```
 #!r
 
-install.packages("/path/to/mpuri/download", repos = NULL, type = "source")
+install.packages("/path/to/mpuri", repos = NULL, type = "source")
 ```
-
-to install the package. Here, `/path/to/mpuri/download` is the location of the (unzipped) source code you downloaded previously. 
+Here, `/path/to/mpuri` is the location of the (unzipped) source code you downloaded previously. 
 
 ## Documentation
 
-For documentation, please see the built-in R help system for mpuri. 
+For documentation, please see the built-in R help system for mpuri.
