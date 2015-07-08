@@ -7,3 +7,6 @@ syntax: glob
 
 # Vim temp files
 *.swp
+
+# other stuff
+tags

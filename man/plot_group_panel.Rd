@@ -6,7 +6,7 @@
 \usage{
 plot_group_panel(metadata, otu_tab_matrix, group, base_group = "Control",
   cutoff = min(20, nrow(otu_tab_matrix)), alpha = 0.05, notch = FALSE,
-  sep = ";", title = "", labeller = "label_value")
+  sep = ";", title = "")
 }
 \arguments{
 \item{metadata}{Data frame of metadata, like the one returned by readPCL.}
@@ -31,13 +31,10 @@ relative abundance.}
 classification in the OTU labels (rows of \code{otu_tab_matrix})}
 
 \item{title}{Title for the graph.}
-
-\item{labeller}{labeller function to pass to ggplot2's
-\code{\link[ggplot2]{facet_grid}}. The default uses the values of the labels.}
 }
 \value{
 ggplot2 plotting object. This function does not automatically display
-the plot, so you need to call \code{\link{print}} on its output to display
+the plot, so you need to call \code{print} on its output to display
 the plot.
 }
 \description{
