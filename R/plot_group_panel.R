@@ -199,6 +199,14 @@ plot_one_panel <- function(metadata, otu_tab_matrix, group,
                                                          color=group),
                                      notch=notch, outlier.shape=NA, 
                                      position="dodge")
+    # draw rectangles to highlight certain regions
+    # significant <- top_data[top_data$changed != "no change",]
+    # rectangles <- data.frame(xmin=significant$bug, xmax=significant$bug,
+    #                          ymin=-Inf, ymax=Inf)
+    # p1 <- p1 + ggplot2::geom_rect(data=rectangles,
+    #                               ggplot2::aes_string(xmin="xmin", xmax="xmax",
+    #                                                   ymin="ymin", ymax="ymax"),
+    #                               color="grey20", alpha=0.5, inherit.aes=FALSE)
     if (dots) {
         p1 <- p1 + ggplot2::geom_point(data=top_data,
                                        ggplot2::aes_string(x="bug", y="value",
